@@ -46,7 +46,6 @@ const TodoList = ({
         else {
             const text = getText(toEditList, index);
             updateTodo(id, text);
-            console.log('shuya');
             if (index === 0)
                 setToEditList(list => {
                     list.shift();
