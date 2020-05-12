@@ -4,6 +4,8 @@ package-lock.json
 /server/dbconfig.js
 /server/node_modules
 
+/client/node_modules
+
 .DS_Store
 .env.local
 .env.development.local
