@@ -65,8 +65,8 @@ const TodoList = ({
     if (isLoading)
         return <CircularProgress />
 
-    if (!isLoading && !todos) 
-        return <h2>List is empty</h2>
+    if (!isLoading && todos.length === 0) 
+        return <h2 className="todos no-todos">List is empty</h2>
 
     return (
         <div>

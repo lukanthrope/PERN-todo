@@ -40,6 +40,10 @@ form {
   margin-top: 100px;
 }
 
+.no-todos {
+  margin-left: 5%;
+}
+
 .todo {
   position: relative;
   display: flex;
