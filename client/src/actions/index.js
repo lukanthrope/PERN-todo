@@ -7,6 +7,8 @@ import {
     SET_LOADER 
  }  from '../actions/names';
 
+export const setLoader = () => dispatch => dispatch({ type: SET_LOADER });
+
 export const getTodos = () => async dispatch => {
     try {    
         const res = await axios.get('/todos');
@@ -54,10 +56,11 @@ export const removeTodo = id => async dispatch => {
 
 export const updateTodo = (id, description) => async dispatch => {
     try {
+        setLoader();
         await axios.put(`/todos/${id}`, { 
             description
         });
-
+        setLoader();
         return dispatch({
             type: UPDATE_TODO,
             payload: {
@@ -69,5 +72,3 @@ export const updateTodo = (id, description) => async dispatch => {
         console.log(err);
     } 
 };
-
-export const setLoader = () => dispatch => dispatch({ type: SET_LOADER });

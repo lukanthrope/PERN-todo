@@ -21,7 +21,6 @@ function reducer(state, action) {
                     el = { todo_id: action.payload.id, description: action.payload.description } : 
                     el
                 )
-                console.log(newTodos);
                 return [...newTodos];
             });
 

@@ -5,13 +5,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { connect } from 'react-redux';
-import { removeTodo } from '../actions';
+import { removeTodo, setLoader } from '../actions';
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function DialogModal({ removeTodo, id, close }) {
+function DialogModal({ removeTodo, id, close, setLoader }) {
   const [open, setOpen] = useState(true);
 
   const handleClose = () => {
@@ -20,8 +20,10 @@ function DialogModal({ removeTodo, id, close }) {
   };
 
   const handleAgree = () => {
+    setLoader();
     handleClose();
     removeTodo(id);
+    setLoader();
   };
 
   return (
@@ -50,6 +52,7 @@ function DialogModal({ removeTodo, id, close }) {
 
 const mapDispatchToProps = dispatch => ({
     removeTodo: id => dispatch(removeTodo(id)),
+    setLoader: () => dispatch(setLoader()),
 });
 
 export default connect(null, mapDispatchToProps)(DialogModal);
