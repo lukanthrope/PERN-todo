@@ -3,7 +3,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import { getTodos, updateTodo, setLoader } from '../actions';
+import { getTodos, updateTodo } from '../actions';
 import DialogModal from './DialogModal';
 
 const TodoList = ({ 
@@ -11,7 +11,6 @@ const TodoList = ({
     updateTodo, 
     todos, 
     isLoading, 
-    setLoader,
 }) => {
     const [toEditList, setToEditList] = useState([]);
     const [showDialog, setShowDialog] = useState(false);
@@ -65,11 +64,6 @@ const TodoList = ({
     if (isLoading)
         return <CircularProgress />
 
-    if (!isLoading && todos.length === 0)
-        return setTimeout(() => 
-            <h2 className="todos no-todos">List is empty</h2>, 
-            1000);
-
     return (
         <div>
             { showDialog && <DialogModal id={deleteId} close={setShowDialog} /> }
@@ -117,7 +111,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     getTodos: () => dispatch(getTodos()),
     updateTodo: (id, description) => dispatch(updateTodo(id, description)),
-    setLoader: () => dispatch(setLoader()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
