@@ -64,6 +64,9 @@ const TodoList = ({
     if (isLoading)
         return <CircularProgress />
 
+    if (!isLoading && todos.length === 0)
+        return <h2>No todos yet</h2>
+
     return (
         <div>
             { showDialog && <DialogModal id={deleteId} close={setShowDialog} /> }

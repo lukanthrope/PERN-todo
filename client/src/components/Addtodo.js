@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import { addTodo, setLoader } from '../actions';
+import { addTodo } from '../actions';
 
-const Addtodo = ({ addTodo, setLoader }) => {
+const Addtodo = ({ addTodo }) => {
     const [inputData, setInputData] = useState(''); 
 
     const Submit = (e) => {
         e.preventDefault();
         if (inputData.trim() !== '') {
-            setLoader();
             addTodo(inputData);
             setInputData('');
-            setLoader();
         }
     }
 
@@ -34,7 +32,6 @@ const Addtodo = ({ addTodo, setLoader }) => {
 }
 const mapDispatchToProps = dispatch => ({
     addTodo: arg => dispatch(addTodo(arg)),
-    setLoader: () => dispatch(setLoader()),
 });
 
 export default connect(null, mapDispatchToProps)(Addtodo);

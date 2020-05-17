@@ -11,8 +11,9 @@ export const setLoader = () => dispatch => dispatch({ type: SET_LOADER });
 
 export const getTodos = () => async dispatch => {
     try {    
+        dispatch(setLoader());
         const res = await axios.get('/todos');
-
+        dispatch(setLoader());
         return dispatch({
             type: GET_TODOS,
             payload: {
@@ -26,7 +27,9 @@ export const getTodos = () => async dispatch => {
 
 export const addTodo = description => async dispatch => {
     try {
+        dispatch(setLoader());
         const res = await axios.post('/todos', { description });
+        dispatch(setLoader());
 
         return dispatch({
             type: ADD_TODO,
@@ -41,8 +44,10 @@ export const addTodo = description => async dispatch => {
 
 export const removeTodo = id => async dispatch => {
     try {
+        dispatch(setLoader());
         await axios.delete(`/todos/${id}`);
-
+        dispatch(setLoader());
+        
         return dispatch({
             type: REMOVE_TODO,
             payload: {
@@ -56,11 +61,11 @@ export const removeTodo = id => async dispatch => {
 
 export const updateTodo = (id, description) => async dispatch => {
     try {
-        setLoader();
+        dispatch(setLoader());
         await axios.put(`/todos/${id}`, { 
             description
         });
-        setLoader();
+        dispatch(setLoader());
         return dispatch({
             type: UPDATE_TODO,
             payload: {
